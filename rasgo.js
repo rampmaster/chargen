@@ -26,6 +26,10 @@ var Rasgo = function(nombre, valor = null) {
 	label.setAttribute('class', 'lb');
 	label.innerHTML = this.nombre;
 	this.htmlobj.appendChild(label);
+	var puntos = document.createElement('div');
+	puntos.setAttribute('id', 'puntos-' + nombre);
+	puntos.setAttribute('class', 'puntos');
+	this.htmlobj.appendChild(puntos);
 	for (var i = 1; i <= 5; i++) {
 		var p = new Punto(i);
 		p.render(self);
@@ -34,6 +38,6 @@ var Rasgo = function(nombre, valor = null) {
 			self.valor = (self.valor == punto) ? self.valor - 1 : punto;
 			p.render(self);
 		});
-		this.htmlobj.appendChild(p.htmlobj);
+		puntos.appendChild(p.htmlobj);
 	}
 }

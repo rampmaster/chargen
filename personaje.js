@@ -106,4 +106,6 @@ p.htmlobj.appendChild(document.createElement('hr'));
 p.htmlobj.appendChild(row);
 p.htmlobj.appendChild(document.createElement('br'));
 p.htmlobj.appendChild(document.createElement('br'));
+//console.log(p.atributos);
+//console.log(p.habilidades);
 document.getElementById('main').appendChild(p.htmlobj);
