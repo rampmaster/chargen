@@ -12,50 +12,23 @@
 	<div id="main" class="container">
 		<h1>Generador de Personaje</h1>
 		<button id="generar" class="btn btn-primary">Generar</button>
-		<hr>
-		<div id="out"></div>
 	</div>
 	<script src="helpers.js"></script>
 	<script src="arquetipos.js"></script>
 	<script src="rasgo.js"></script>
 	<script src="personaje.js"></script>
 	<script>
-		$(document).ready(function() {
-			for(tipo in atributos) {
-				for(a in atributos[tipo]) {
-					var val = atributos[tipo][a];
-					var atributo = new Rasgo(a, val);
-					out.appendChild(atributo.htmlobj);	
-				}
-			}
-			var tipos = Object.keys(habilidades);
-			var puntos_iniciales = [11, 7, 4];
-			var puntos = [11, 7, 4];
-			// Generar
-			shuffle(tipos);
-			for(t in tipos) {
-				while(puntos[t] > 0) {
-					var tipo = tipos[t];
-					var habilidades_tipo = Object.keys(habilidades[tipo]);
-					var habilidad_random = habilidades_tipo[rand(0, habilidades_tipo.length - 1)];
-					habilidades[tipo][habilidad_random]++;
-					puntos[t]--;
-				}
-			}
-			for(tipo in habilidades) {
-				var i = tipos.indexOf(tipo);
-				var pool = puntos_iniciales[i];
-				for(h in habilidades[tipo]) {
-					var val = habilidades[tipo][h];
-					var habilidad = new Rasgo(h, val);
-					out.appendChild(habilidad.htmlobj);
-				}
-			}
-			var container = document.getElementById('main');
-			container.appendChild(out);
-			$('#generar').click(function(){
-				location.reload();
-			});
+		/* 
+			Datos faltantes para combate
+			============================
+			+ amradura
+			+ iniciativa
+			+ salud
+			+ resistencia = armadura + resistencia
+			+ daño = (fuerza + armascc + dañoarma) o (amrasdefuego + dañoarma)
+		*/
+		$('#generar').click(function(){
+			location.reload();
 		});
 	</script>
 </body>
