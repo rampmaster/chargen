@@ -44,6 +44,8 @@ var Personaje = function(nombre, arq) {
 	this.htmlobj.setAttribute('id', nombre);
 	this.htmlobj.setAttribute('class', 'personaje');
 }
+
+// Generar Nuevo Personaje con parámetros aleatorios
 var arquetipoRandom = arquetipos[rand(0, arquetipos.length - 1)];
 var p = new Personaje('Juan Carlos', arquetipoRandom);
 var row = document.createElement('div');

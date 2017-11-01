@@ -17,18 +17,36 @@
 	<script src="arquetipos.js"></script>
 	<script src="rasgo.js"></script>
 	<script src="personaje.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
 	<script>
-		/* 
-			Datos faltantes para combate
-			============================
-			+ amradura
-			+ iniciativa
-			+ salud
-			+ resistencia = armadura + resistencia
-			+ daño = (fuerza + armascc + dañoarma) o (amrasdefuego + dañoarma)
+		/*	TUDU
+				+ Almacenar datos resultados
+					- Error: No se puede guardar nombres de índices con caracteres raros!
+				+ Combate
+					- amradura
+					- iniciativa
+					- salud
+					- resistencia = armadura + resistencia
+					- daño = (fuerza + armascc + dañoarma) o (amrasdefuego + dañoarma)
+				
 		*/
+	  // Initialize Firebase
+	  var config = {
+	    apiKey: "AIzaSyBidEoT9UhaxHm0z3ZHLUiMVJs2nHg6RnM",
+	    authDomain: "wodchargen.firebaseapp.com",
+	    databaseURL: "https://wodchargen.firebaseio.com",
+	    projectId: "wodchargen",
+	    storageBucket: "wodchargen.appspot.com",
+	    messagingSenderId: "679200538033"
+	  };
+	  firebase.initializeApp(config);
+		var ref = firebase.database().ref();
+	  var obj = {};
+		obj.atributos = p.atributos;
+		obj.habilidades = p.habilidades;
 		$('#generar').click(function(){
 			location.reload();
 		});
+		ref.push(obj);
 	</script>
 </body>
