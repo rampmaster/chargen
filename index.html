@@ -2,11 +2,9 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no">
 	<title>Generador de Habilidades Mortal Mundo de Tinieblas</title>
-	<script
-  src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-  integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
-  crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" href="rasgo.css">
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	<style>
 		body {
@@ -26,232 +24,234 @@
 		<button id="generar" class="btn btn-primary">Generar</button>
 		<br>
 		<br>
-		<pre id="out"></pre>
+		<div id="out"></div>
 	</div>
+	<script src="rasgo.js"></script>
 	<script>
-		function rand(min, max) {
-			return Math.floor(Math.random() * (max - min + 1)) + min;
-		}
-		function shuffle(array) {
-	    let counter = array.length;
-	    while (counter > 0) {
-        let index = Math.floor(Math.random() * counter);
-        counter--;
-        let temp = array[counter];
-        array[counter] = array[index];
-        array[index] = temp;
-	    }
-	    return array;
-		}
-		function marcas(val) {
-			var marcas = '';
-			for (var v = val - 1; v >= 0; v--) {
-				marcas += ' *';
-			};
-			return marcas;
-		}
-		var arquetipos = [
-			// Físico - Social
-			{
-				'Físicos(6)': {
-					'Fuerza': 3,
-					'Destreza': 3,
-					'Resistencia': 3
-				},
-				'Sociales(4)': {
-					'Carisma': 2,
-					'Manipulación': 2,
-					'Apariencia': 3
-				},
-				'Mentales(3)': {
-					'Percepción': 2,
-					'Inteligencia': 2,
-					'Astucia': 2
+			$(document).ready(function() {
+				String.prototype.capitalize = function() {
+				  return this.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
+				};
+				function rand(min, max) {
+				  return Math.floor(Math.random() * (max - min + 1)) + min;
 				}
-			},
-			// Físico - Mental
-			{
-				'Físicos(6)': {
-					'Fuerza': 3,
-					'Destreza': 3,
-					'Resistencia': 3
-				},
-				'Sociales(3)': {
-					'Carisma': 2,
-					'Manipulación': 2,
-					'Apariencia': 2
-				},
-				'Mentales(4)': {
-					'Percepción': 2,
-					'Inteligencia': 2,
-					'Astucia': 3
+				function shuffle(array) {
+			    let counter = array.length;
+			    while (counter > 0) {
+		        let index = Math.floor(Math.random() * counter);
+		        counter--;
+		        let temp = array[counter];
+		        array[counter] = array[index];
+		        array[index] = temp;
+			    }
+			    return array;
 				}
-			},
-			// Social - Físico
-			{
-				'Físicos(4)': {
-					'Fuerza': 2,
-					'Destreza': 2,
-					'Resistencia': 3
-				},
-				'Sociales(6)': {
-					'Carisma': 3,
-					'Manipulación': 3,
-					'Apariencia': 3
-				},
-				'Mentales(3)': {
-					'Percepción': 2,
-					'Inteligencia': 2,
-					'Astucia': 2
+				// Objetos
+				var arquetipos = [
+					// Físico - Social
+					{
+						'Físicos(6)': {
+							'Fuerza': 3,
+							'Destreza': 3,
+							'Resistencia': 3
+						},
+						'Sociales(4)': {
+							'Carisma': 2,
+							'Manipulación': 2,
+							'Apariencia': 3
+						},
+						'Mentales(3)': {
+							'Percepción': 2,
+							'Inteligencia': 2,
+							'Astucia': 2
+						}
+					},
+					// Físico - Mental
+					{
+						'Físicos(6)': {
+							'Fuerza': 3,
+							'Destreza': 3,
+							'Resistencia': 3
+						},
+						'Sociales(3)': {
+							'Carisma': 2,
+							'Manipulación': 2,
+							'Apariencia': 2
+						},
+						'Mentales(4)': {
+							'Percepción': 2,
+							'Inteligencia': 2,
+							'Astucia': 3
+						}
+					},
+					// Social - Físico
+					{
+						'Físicos(4)': {
+							'Fuerza': 2,
+							'Destreza': 2,
+							'Resistencia': 3
+						},
+						'Sociales(6)': {
+							'Carisma': 3,
+							'Manipulación': 3,
+							'Apariencia': 3
+						},
+						'Mentales(3)': {
+							'Percepción': 2,
+							'Inteligencia': 2,
+							'Astucia': 2
+						}
+					},
+					// Social - Mental
+					{
+						'Físicos(3)': {
+							'Fuerza': 2,
+							'Destreza': 2,
+							'Resistencia': 2
+						},
+						'Sociales(6)': {
+							'Carisma': 3,
+							'Manipulación': 3,
+							'Apariencia': 3
+						},
+						'Mentales(4)': {
+							'Percepción': 3,
+							'Inteligencia': 2,
+							'Astucia': 2
+						}
+					},
+					// Mental - Físico
+					{
+						'Físicos(4)': {
+							'Fuerza': 2,
+							'Destreza': 3,
+							'Resistencia': 2
+						},
+						'Sociales(3)': {
+							'Carisma': 2,
+							'Manipulación': 2,
+							'Apariencia': 2
+						},
+						'Mentales(6)': {
+							'Percepción': 3,
+							'Inteligencia': 3,
+							'Astucia': 3
+						}
+					},
+					// Mental - Social
+					{
+						'Físicos(3)': {
+							'Fuerza': 2,
+							'Destreza': 2,
+							'Resistencia': 2
+						},
+						'Sociales(4)': {
+							'Carisma': 2,
+							'Manipulación': 3,
+							'Apariencia': 2
+						},
+						'Mentales(6)': {
+							'Percepción': 3,
+							'Inteligencia': 3,
+							'Astucia': 3
+						}
+					},
+				];
+				var arq = rand(0, arquetipos.length - 1);
+				// Atributos
+				var atributos = arquetipos[arq];
+				//console.log(JSON.stringify(atributos, null, 2));
+				var out = document.getElementById('out');
+				//out.innerHTML += '<h1>Atributos</h2>\n';
+				var atr_pool_index = 0;
+				for(tipo in atributos) {
+					//out.innerHTML += '<b>' + tipo + '</b><br>\n';
+					for(a in atributos[tipo]) {
+						var val = atributos[tipo][a];
+						var atributo = new Rasgo(a, val);
+						////out.innerHTML += atributo.htmlobj.innerHTML +  '<br>\n';
+						out.appendChild(atributo.htmlobj);	
+					}
+					//out.innerHTML = out.innerHTML.slice(0, -2);
+					//out.innerHTML += '<br>\n';
+					//out.innerHTML += '<br>\n';
 				}
-			},
-			// Social - Mental
-			{
-				'Físicos(3)': {
-					'Fuerza': 2,
-					'Destreza': 2,
-					'Resistencia': 2
-				},
-				'Sociales(6)': {
-					'Carisma': 3,
-					'Manipulación': 3,
-					'Apariencia': 3
-				},
-				'Mentales(4)': {
-					'Percepción': 3,
-					'Inteligencia': 2,
-					'Astucia': 2
+				var habilidades = {
+					'Talentos': {
+						'Alerta': 0,
+						'Atletismo': 0,
+						'Callejeo': 0,
+						'Empatía': 0,
+						'Esquivar': 0,
+						'Expresión': 0,
+						'Intimidación': 0,
+						'Liderazgo': 0,
+						'Pelea': 0,
+						'Subterfugio': 0,
+					},
+					'Técnicas': {
+						'Armas C.C': 0,
+						'Armas de Fuego': 0,
+						'Conducir': 0,
+						'Etiqueta': 0,
+						'Interpretación': 0,
+						'Pericias': 0,
+						'Seguridad': 0,
+						'Sigilo': 0,
+						'Superviciencia': 0,
+						'T. Animales': 0,
+					},
+					'Conocimientos': {
+						'Academicismo': 0,
+						'Cinecias': 0,
+						'Finanzas': 0,
+						'Informática': 0,
+						'Investigación': 0,
+						'Leyes': 0,
+						'Lingüística': 0,
+						'Medicina': 0,
+						'Ocultismo': 0,
+						'Política': 0,
+					},
+				};
+				//out.innerHTML += '<br>\n';
+				//out.innerHTML += '<h1>Habilidades</h1>\n';
+				var tipos = Object.keys(habilidades);
+				var puntos_iniciales = [11, 7, 4];
+				var puntos = [11, 7, 4];
+				// Generar
+				shuffle(tipos);
+				for(t in tipos) {
+					while(puntos[t] > 0) {
+						var tipo = tipos[t];
+						var habilidades_tipo = Object.keys(habilidades[tipo]);
+						var habilidad_random = habilidades_tipo[rand(0, habilidades_tipo.length - 1)];
+						habilidades[tipo][habilidad_random]++;
+						puntos[t]--;
+					}
 				}
-			},
-			// Mental - Físico
-			{
-				'Físicos(4)': {
-					'Fuerza': 2,
-					'Destreza': 3,
-					'Resistencia': 2
-				},
-				'Sociales(3)': {
-					'Carisma': 2,
-					'Manipulación': 2,
-					'Apariencia': 2
-				},
-				'Mentales(6)': {
-					'Percepción': 3,
-					'Inteligencia': 3,
-					'Astucia': 3
+				//console.log(JSON.stringify(habilidades, null, 2));
+				for(tipo in habilidades) {
+					var i = tipos.indexOf(tipo);
+					var pool = puntos_iniciales[i];
+					//out.innerHTML += '<b>' + tipo + '(' + pool + ')</b><br>';
+					for(h in habilidades[tipo]) {
+						var val = habilidades[tipo][h];
+						//if(val > 0) {
+							var habilidad = new Rasgo(h, val);
+							////out.innerHTML += habilidad.htmlobj.innerHTML + '<br>';
+							out.appendChild(habilidad.htmlobj);
+						//}
+					}
+					//out.innerHTML = out.innerHTML.slice(0, -2);
+					//out.innerHTML += '<br>\n';
+					//out.innerHTML += '<br>\n';
 				}
-			},
-			// Mental - Social
-			{
-				'Físicos(3)': {
-					'Fuerza': 2,
-					'Destreza': 2,
-					'Resistencia': 2
-				},
-				'Sociales(4)': {
-					'Carisma': 2,
-					'Manipulación': 3,
-					'Apariencia': 2
-				},
-				'Mentales(6)': {
-					'Percepción': 3,
-					'Inteligencia': 3,
-					'Astucia': 3
-				}
-			},
-		];
-		var arq = rand(0, arquetipos.length - 1);
-		// Atributos
-		var atributos = arquetipos[arq];
-		console.log(JSON.stringify(atributos, null, 2));
-		var out = document.getElementById('out');
-		out.innerHTML += 'Atributos\n';
-		out.innerHTML += '=========\n';
-		var atr_pool_index = 0;
-		for(tipo in atributos) {
-			out.innerHTML += '<b>' + tipo + ':</b> ';
-			for(a in atributos[tipo]) {
-				var val = atributos[tipo][a];
-				out.innerHTML += a + ' ' + marcas(val) +  ', ';	
-			}
-			out.innerHTML = out.innerHTML.slice(0, -2);
-			out.innerHTML += '\n';
-		}
-		var habilidades = {
-			'Talentos': {
-				'Alerta': 0,
-				'Atletismo': 0,
-				'Callejeo': 0,
-				'Empatía': 0,
-				'Esquivar': 0,
-				'Expresión': 0,
-				'Intimidación': 0,
-				'Liderazgo': 0,
-				'Pelea': 0,
-				'Subterfugio': 0,
-			},
-			'Técnicas': {
-				'Armas C.C': 0,
-				'Armas de Fuego': 0,
-				'Conducir': 0,
-				'Etiqueta': 0,
-				'Interpretación': 0,
-				'Pericias': 0,
-				'Seguridad': 0,
-				'Sigilo': 0,
-				'Superviciencia': 0,
-				'T. Animales': 0,
-			},
-			'Conocimientos': {
-				'Academicismo': 0,
-				'Cinecias': 0,
-				'Finanzas': 0,
-				'Informática': 0,
-				'Investigación': 0,
-				'Leyes': 0,
-				'Lingüística': 0,
-				'Medicina': 0,
-				'Ocultismo': 0,
-				'Política': 0,
-			},
-		};
-		out.innerHTML += '\n';
-		out.innerHTML += 'Habilidades\n';
-		out.innerHTML += '===========\n';
-		var tipos = Object.keys(habilidades);
-		var puntos_iniciales = [11, 7, 4];
-		var puntos = [11, 7, 4];
-		// Generar
-		shuffle(tipos);
-		for(t in tipos) {
-			while(puntos[t] > 0) {
-				var tipo = tipos[t];
-				var habilidades_tipo = Object.keys(habilidades[tipo]);
-				var habilidad_random = habilidades_tipo[rand(0, habilidades_tipo.length - 1)];
-				habilidades[tipo][habilidad_random]++;
-				puntos[t]--;
-			}
-		}
-		console.log(JSON.stringify(habilidades, null, 2));
-		// Render
-		for(tipo in habilidades) {
-			var i = tipos.indexOf(tipo);
-			var pool = puntos_iniciales[i];
-			out.innerHTML += '<b>' + tipo + '(' + pool + '):</b> ';
-			for(h in habilidades[tipo]) {
-				var val = habilidades[tipo][h];
-				if(val > 0) {
-					
-					out.innerHTML += h + ' ' + marcas(val) + ', ';
-				}
-			}
-			out.innerHTML = out.innerHTML.slice(0, -2);
-			out.innerHTML += '\n';
-		}
-		var container = document.getElementById('main');
-		container.appendChild(out);
-		$('#generar').click(function(){
-			location.reload();
-		});
+				var container = document.getElementById('main');
+				container.appendChild(out);
+				$('#generar').click(function(){
+					location.reload();
+				});
+			});
 	</script>
 </body>

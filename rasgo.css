@@ -1,0 +1,13 @@
+.lb {
+	padding-right: 1em;
+}
+.punto {
+	width: 1em;
+	height: 1.3em;
+	border: solid 1px black;
+	border-radius: 100%;
+	margin-right: .3em;
+	display: inline-block;
+	position: relative;
+	top: .2em;
+}
