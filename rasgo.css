@@ -1,3 +1,8 @@
+.campo {
+	padding-top: .2em;	
+	margin-bottom: .5em;
+	border-bottom: solid gray 1px;
+}
 .lb {
 	padding-right: 1em;
 	text-transform: capitalize;
@@ -10,8 +15,9 @@
 	margin-right: .3em;
 	display: inline-block;
 	position: relative;
-	top: .2em;
+	top: -.2em;
 }
 .puntos {
+	display: inline-block;
 	float: right;
 }
