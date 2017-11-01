@@ -11,7 +11,7 @@
 <body>
 	<div id="main" class="container">
 		<h1>Generador de Personaje</h1>
-		<button id="generar" class="btn btn-primary">Generar</button>
+		<button id="guardar" class="btn btn-primary">Guardar</button>
 	</div>
 	<script src="helpers.js"></script>
 	<script src="arquetipos.js"></script>
@@ -41,12 +41,11 @@
 	  };
 	  firebase.initializeApp(config);
 		var ref = firebase.database().ref();
-	  var obj = {};
-		obj.atributos = p.atributos;
-		obj.habilidades = p.habilidades;
-		$('#generar').click(function(){
-			location.reload();
+		$('#guardar').click(function(){
+			var obj = {};
+			obj.atributos = p.atributos;
+			obj.habilidades = p.habilidades;
+			ref.push(obj);
 		});
-		ref.push(obj);
 	</script>
 </body>
