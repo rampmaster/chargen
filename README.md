@@ -1,7 +1,8 @@
 Generador de Personaje
 ======================
+
 Permite crear, modificar, generar, guardar, descargar y cargar hojas de personaje.
-----------------------------------------------------------------------------------
+
 * TUDU
 	+ Crear: Falta generar una hoja en blanco al inicio.
 	+ Guardar: Ya se guardan datos en Firebase. Falta poder obtenerlos y administrarlos (según usuario, etc).
