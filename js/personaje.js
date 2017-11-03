@@ -1,3 +1,5 @@
+
+
 var Personaje = function(nombre, atr, hab) {
 	var self = this;
 	this.nombre = nombre;
@@ -8,7 +10,7 @@ var Personaje = function(nombre, atr, hab) {
 	this.htmlobj.setAttribute('class', 'personaje');
 }
 
-// Generar Nuevo Personaje con parámetros aleatorios
+// Atributos
 var atributos = arquetipos[rand(0, arquetipos.length - 1)];
 var p = new Personaje('Juan Carlos', atributos, habilidades);
 var row = document.createElement('div');
@@ -33,9 +35,8 @@ p.htmlobj.appendChild(document.createElement('hr'));
 p.htmlobj.appendChild(row);
 p.htmlobj.appendChild(document.createElement('br'));
 p.htmlobj.appendChild(document.createElement('br'));
-// Redeclarar Columnba
-var row = document.createElement('div');
-row.setAttribute('class', 'row');
+
+// Habilidades
 var tipos = Object.keys(p.habilidades);
 var puntos_iniciales = [11, 7, 4];
 var puntos = [11, 7, 4];
@@ -49,6 +50,8 @@ for(t in tipos) {
 		puntos[t]--;
 	}
 }
+var row = document.createElement('div');
+row.setAttribute('class', 'row');
 for(tipo in p.habilidades) {
 	var col = document.createElement('div');
 	col.setAttribute('class', 'col-md-4');
@@ -71,6 +74,6 @@ p.htmlobj.appendChild(document.createElement('hr'));
 p.htmlobj.appendChild(row);
 p.htmlobj.appendChild(document.createElement('br'));
 p.htmlobj.appendChild(document.createElement('br'));
-//console.log(p.atributos);
-//console.log(p.habilidades);
+
+// Render
 document.getElementById('main').appendChild(p.htmlobj);
