@@ -12,8 +12,18 @@
 <body>
 	<div id="main" class="container">
 		<h1>Generador de Personaje</h1>
-		<button id="guardar" class="btn btn-primary">Guardar</button>
+		<hr>
+		<div class="form-group">
+			<select class="form-control">
+				<option value="" disabled selected>Seleccionar Personaje</option>
+			</select>
+		</div>
+		<button id="cargar" title="To do." class="btn btn-primary" disabled>Nuevo</button>
+		<button id="cargar" title="To do." class="btn btn-primary" disabled>Generar</button>
+		<button id="guardar" title="Stores character to firebase. No way to retrive stored characters yet." class="btn btn-primary" disabled>Guardar</button>
 		<button id="descargar" class="btn btn-primary">Descargar</button>
+		<button id="cargar" title="To do." class="btn btn-primary" disabled>Cargar</button>
+		<button id="eliminar" title="To do." class="btn btn-danger" disabled>Eliminar</button>
 	</div>
 	<script src="js/helpers.js"></script>
 	<script src="js/arquetipos.js"></script>
@@ -42,7 +52,7 @@
 		$('#descargar').click(function(){
 			delete p.htmlobj;
 			console.log('Iniciando descarga');
-			download(JSON.stringify(p, null, 4), 'test.txt', 'text/plain');
+			download(JSON.stringify(p, null, 4), 'personaje.json', 'text/plain');
 		});
 	</script>
 </body>
