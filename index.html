@@ -1,7 +1,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no">
-	<title>Generador de Habilidades Mortal Mundo de Tinieblas</title>
+	<title>Generador de Personaje</title>
 	<link rel="stylesheet" type="text/css" href="css/custom.css">
 	<link rel="stylesheet" type="text/css" href="css/rasgo.css">
 	<link rel="shortcut icon" type="image/png" href="http://tao.cl/img/fav.png">
@@ -33,16 +33,7 @@
 	<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
 	<script src="js/firebase.js"></script>
 	<script>
-		/*	TUDU
-				+ Combate
-					- amradura
-					- iniciativa
-					- salud
-					- resistencia = armadura + resistencia
-					- daño = (fuerza + armascc + dañoarma) o (amrasdefuego + dañoarma)
-				
-		*/
-	  $('#guardar').click(function(){
+		$('#guardar').click(function(){
 			ref.push(p);
 			console.log('Personaje guardado')
 		});
