@@ -27,7 +27,7 @@ document.forms['myform'].elements['myfile'].onchange = function(evt) {
     filecontent = evt.target.result;
     //console.log(filecontent);
     var obj = JSON.parse(filecontent);
-    console.log(obj.obj); 
+    console.log('Cargando personaje'); 
     p.cargar(obj.obj);
     p.render(document.getElementById('char-cont'));
   };
