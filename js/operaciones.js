@@ -23,7 +23,6 @@ document.forms['myform'].elements['myfile'].onchange = function(evt) {
       return;
     }
     filecontent = evt.target.result;
-    //console.log(filecontent);
     var obj = JSON.parse(filecontent);
     p.cargar(obj);
   };
