@@ -103,12 +103,9 @@ var Personaje = function(obj = null) {
 	var self = this;
 	this.obj = (obj != null) ? obj : new Template(); 
 	this.htmlobj = null;
-	this.nuevo = function() {
-		self.obj = new Template();
-		self.render(document.getElementById('char-cont'));
-	};
 	this.generar = function() {
-		self.obj = new Template(); 
+		console.log('Generando personaje');
+		//self.obj = new Template(); 
 		// Atributos
 		self.obj['Atributos'] = arquetipos[rand(0, arquetipos.length - 1)];
 		// Habilidades
@@ -141,15 +138,6 @@ var Personaje = function(obj = null) {
 			}
 		}
 		self.render(document.getElementById('char-cont'));
-	};
-	this.guardar = function() {
-	};
-	this.descargar = function() {
-	};
-	this.cargar = function(obj) {
-		self.obj = obj;
-	};
-	this.eliminar = function(id) {
 	};
 	this.render = function(contenedor) {
 		if(self.htmlobj != null) {
@@ -187,8 +175,16 @@ var Personaje = function(obj = null) {
 				column.setAttribute('class', 'col-sm-10');
 				var campo = document.createElement('input');
 				//campo.setAttribute('name', 'form-control');
+				campo.setAttribute('id', key);
 				campo.setAttribute('type', 'text');
 				campo.setAttribute('class', 'form-control');
+				campo.setAttribute('value', (self.obj[key] != undefined) ? self.obj[key] : '');
+				campo.addEventListener('change', function(){
+					self.obj[this.id] = this.value;
+					console.log(self.obj[this.id]);
+					//self.render(document.getElementById('char-cont'));
+					console.log(this.id + ' actualizado.');
+				});
 				//campo.setAttribute('placeholder', key);
 				column.appendChild(campo);
 				if(count < 4) {
@@ -238,9 +234,15 @@ var Personaje = function(obj = null) {
 				var column = document.createElement('div');
 				column.setAttribute('class', 'col-sm-10');
 				var campo = document.createElement('input');
-				//campo.setAttribute('name', 'form-control');
+				campo.setAttribute('id', key);
 				campo.setAttribute('type', 'number');
 				campo.setAttribute('class', 'form-control');
+				campo.setAttribute('value', self.obj[this.id]);
+				campo.addEventListener('change', function(){
+					self.obj[this.id] = this.value;
+					self.render(document.getElementById('char-cont'));
+					console.log(this.id + ' actualizado.');
+				});
 				//campo.setAttribute('placeholder', key);
 				column.appendChild(campo);
 				row.appendChild(label);
@@ -249,5 +251,16 @@ var Personaje = function(obj = null) {
 			self.htmlobj.appendChild(row);
 		}
 		contenedor.appendChild(self.htmlobj);
+	};
+	this.cargar = function(obj) {
+		console.log('Cargando personaje');
+    self.obj = obj;
+		self.render(document.getElementById('char-cont'));
+	};
+	this.nuevo = function() {
+		console.log('Personaje nuevo');
+		window.location.replace(window.location.pathname + window.location.search + window.location.hash);
+		//self.obj = new Template();
+		//self.render(document.getElementById('char-cont'));
 	};
 };

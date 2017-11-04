@@ -1,9 +1,7 @@
 $('#nuevo').click(function(){
-	console.log('Personaje nuevo');
 	p.nuevo();
 });
 $('#generar').click(function(){
-	console.log('Generando personaje');
 	p.generar();
 });
 $('#guardar').click(function(){
@@ -11,10 +9,10 @@ $('#guardar').click(function(){
 	console.log('Personaje guardado');
 });
 $('#descargar').click(function(){
-	delete p.htmlobj;
 	console.log('Iniciando descarga');
-	download(JSON.stringify(p, null, 4), 'personaje.json', 'text/plain');
+	download(JSON.stringify(p.obj, null, 4), 'personaje.json', 'text/plain');
 });
+// Cargar
 document.forms['myform'].elements['myfile'].onchange = function(evt) {
   if(!window.FileReader) return; // Browser is not compatible
   var reader = new FileReader();
@@ -27,9 +25,7 @@ document.forms['myform'].elements['myfile'].onchange = function(evt) {
     filecontent = evt.target.result;
     //console.log(filecontent);
     var obj = JSON.parse(filecontent);
-    console.log('Cargando personaje'); 
-    p.cargar(obj.obj);
-    p.render(document.getElementById('char-cont'));
+    p.cargar(obj);
   };
   reader.readAsText(evt.target.files[0]);
 };
