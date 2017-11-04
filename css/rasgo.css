@@ -3,6 +3,11 @@
 	margin-bottom: .5em;
 	border-bottom: solid lightgray 1px;
 }
+.ventaja {
+	padding-top: .2em;	
+	margin-bottom: .5em;
+	display: block;
+}
 .lb {
 	padding-right: 1em;
 	text-transform: capitalize;
@@ -16,6 +21,14 @@
 	display: inline-block;
 	position: relative;
 	top: -.2em;
+}
+.ventaja .puntos {
+	display: block !important;
+	float: none; 
+}
+.temp {
+	border-radius: 0;
+	border-color: #555;
 }
 .puntos {
 	display: inline-block;

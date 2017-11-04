@@ -71,13 +71,13 @@ var Template = function() {
 				'Recursos': 0
 			},
 			'Fuerza de Voluntad': {
-				'Temporal': 0,
-				'Permanente': 0
+				'Permanente': 0,
+				'Temporal': 0
 			},
 			'Virtudes': {
-				'Conciencia': 0,
-				'Autocontrol': 0,
-				'Coraje': 0
+				'Conciencia': 1,
+				'Autocontrol': 1,
+				'Coraje': 1
 			}
 		},
 		'Salud': 0,
@@ -220,8 +220,16 @@ var Personaje = function(obj = null) {
 					col.appendChild(titulo);
 					for(h in self.obj[key][tipo]) {
 						var val = self.obj[key][tipo][h];
-						var rasgo = new Rasgo(h, val);
-						col.appendChild(rasgo.htmlobj);
+						if(h == 'Temporal') {
+							var ventaja = new Ventaja(h, self.obj[key][tipo], val, true);
+							col.appendChild(ventaja.htmlobj);
+						} else if(h == 'Permanente') {
+							var ventaja = new Ventaja(h, self.obj[key][tipo], val);
+							col.appendChild(ventaja.htmlobj);
+						} else {
+							var rasgo = new Rasgo(h, self.obj[key][tipo], val);
+							col.appendChild(rasgo.htmlobj);
+						}
 					}
 					row.appendChild(col);
 				}

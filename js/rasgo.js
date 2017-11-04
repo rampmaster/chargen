@@ -1,6 +1,6 @@
-var Punto = function(i) {
+var Punto = function(i, temp = false) {
 	this.htmlobj = document.createElement('div');
-	this.htmlobj.setAttribute('class', 'punto');
+	this.htmlobj.setAttribute('class', (temp) ? 'punto temp' : 'punto');
 	this.htmlobj.setAttribute('data-punto', i);
 	this.render = function(rasgo) {
 		var puntos = rasgo.htmlobj.getElementsByClassName('punto');
@@ -9,13 +9,13 @@ var Punto = function(i) {
 			puntos[i].style.backgroundColor = 'white';
 		}
 		puntos.forEach(function(e, i, a) {
-			if(rasgo.valor >= puntos[i].getAttribute('data-punto')) {
+			if(rasgo.valor >= parseInt(puntos[i].getAttribute('data-punto'))) {
 				puntos[i].style.backgroundColor = 'black';
 			}
 		});
 	}
 }
-var Rasgo = function(nombre, valor = null) {
+var Rasgo = function(nombre, obj, valor = null) {
 	var self = this;
 	this.nombre = nombre;
 	this.valor = (valor) ? valor : 0;
@@ -36,6 +36,30 @@ var Rasgo = function(nombre, valor = null) {
 		p.htmlobj.addEventListener('click', function(e) {
 			var punto = e.target.getAttribute('data-punto');
 			self.valor = (self.valor == punto) ? self.valor - 1 : punto;
+			obj[nombre] = self.valor;
+			p.render(self);
+		});
+		puntos.appendChild(p.htmlobj);
+	}
+}
+var Ventaja = function(nombre, obj, valor = null, temp = false) {
+	var self = this;
+	this.nombre = nombre;
+	this.valor = (valor) ? valor : 0;
+	this.htmlobj = document.createElement('div');
+	this.htmlobj.setAttribute('id', nombre);
+	this.htmlobj.setAttribute('class', 'ventaja');
+	var puntos = document.createElement('div');
+	puntos.setAttribute('id', 'puntos-' + nombre);
+	puntos.setAttribute('class', 'puntos');
+	this.htmlobj.appendChild(puntos);
+	for (var i = 1; i <= 10; i++) {
+		var p = new Punto(i, temp);
+		p.render(self);
+		p.htmlobj.addEventListener('click', function(e) {
+			var punto = e.target.getAttribute('data-punto');
+			self.valor = (self.valor == punto) ? self.valor - 1 : punto;
+			obj[nombre] = self.valor;
 			p.render(self);
 		});
 		puntos.appendChild(p.htmlobj);
