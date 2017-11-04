@@ -1,190 +1,253 @@
-var Personaje = function(nombre, atr, hab, obj = null) {
+var Template = function() {
+	return {
+		'Nombre': '',
+		'Jugador': '',
+		'Crónica': '',
+		'Naturaleza': '',
+		'Conducta': '',
+		'Concepto': '',
+		'Atributos': {
+			'Físicos': {
+				'Fuerza': 1,
+				'Destreza': 1,
+				'Resistencia': 1
+			},
+			'Sociales': {
+				'Carisma': 1,
+				'Manipulación': 1,
+				'Apariencia': 1
+			},
+			'Mentales': {
+				'Percepción': 1,
+				'Inteligencia': 1,
+				'Astucia': 1
+			}
+		},
+		'Habilidades': {
+			'Talentos': {
+				'Alerta': 0,
+				'Atletismo': 0,
+				'Callejeo': 0,
+				'Empatía': 0,
+				'Esquivar': 0,
+				'Expresión': 0,
+				'Intimidación': 0,
+				'Liderazgo': 0,
+				'Pelea': 0,
+				'Subterfugio': 0,
+			},
+			'Técnicas': {
+				'Armas CC': 0,
+				'Armas de Fuego': 0,
+				'Conducir': 0,
+				'Etiqueta': 0,
+				'Interpretación': 0,
+				'Pericias': 0,
+				'Seguridad': 0,
+				'Sigilo': 0,
+				'Superviciencia': 0,
+				'Trato con Animales': 0,
+			},
+			'Conocimientos': {
+				'Academicismo': 0,
+				'Cinecias': 0,
+				'Finanzas': 0,
+				'Informática': 0,
+				'Investigación': 0,
+				'Leyes': 0,
+				'Lingüística': 0,
+				'Medicina': 0,
+				'Ocultismo': 0,
+				'Política': 0,
+			}
+		},
+		'Ventajas': {
+			'Trasfondos': {
+				'Aliados': 0,
+				'Contactos': 0,
+				'Equipo': 0,
+				'Fama': 0,
+				'Influencia': 0,
+				'Recursos': 0
+			},
+			'Fuerza de Voluntad': {
+				'Temporal': 0,
+				'Permanente': 0
+			},
+			'Virtudes': {
+				'Conciencia': 0,
+				'Autocontrol': 0,
+				'Coraje': 0
+			}
+		},
+		'Salud': 0,
+		'Experiencia': 0,
+		/*
+		'Méritos': {},
+		'Defectos':	{},
+		'Fecha de Nacimiento': '',
+		'Edad': 0,
+		'Pelo': '',
+		'Raza': '',
+		'Nacionalidad': '',
+		'Estatura': 0,
+		'Peso': 0,
+		'Sexo': 0,
+		'Lugar de Trabajo': '',
+		'Horario de Trabajo': '',
+		'Descripcion': ''
+		*/
+	};
+};
+var Personaje = function(obj = null) {
 	var self = this;
-	//* Super objeto con datos del personaje. 
-	//  Los métodos deben manipular los datos de este objeto
-	this.obj = (obj != null) ? obj : 
-	{
-		"nombre": "",
-		"jugador": "",
-		"cronica": "",
-		"naturaleza": "",
-		"conducta": "",
-		"concepto": "",
-		"atributos": {
-			"fisicos": {
-				"fuerza": 0,
-				"destreza": 0,
-				"resistencia": 0
-			},
-			"sociales": {
-				"carisma": 0,
-				"manupulacion": 0,
-				"apariencia": 0
-			},	
-			"mentales": {
-				"inteligencia": 0,
-				"percepcion": 0,
-				"astucia": 0
-			}
-		},
-		"habilidades": {
-			"talentos": {
-				"alerta": 0,
-				"atletismo": 0,
-				"callejeo": 0,
-				"empatia": 0,
-				"esquivar": 0,
-				"expresion": 0,
-				"intimidacion": 0,
-				"liderazgo": 0,
-				"pelea": 0,
-				"subterfugio": 0
-			},
-			"tecnicas": {
-				"armascc": 0,
-				"armasdefuego": 0,
-				"conducir": 0,
-				"etiqueta": 0,
-				"interpretacion": 0,
-				"pericias": 0,
-				"seguridad": 0,
-				"sigilo": 0,
-				"superviciencia": 0,
-				"tratoconanimales": 0
-			},
-			"conocimientos": {
-				"academicismo": 0,
-				"cinecias": 0,
-				"finanzas": 0,
-				"informatica": 0,
-				"investigacion": 0,
-				"leyes": 0,
-				"linguistica": 0,
-				"medicina": 0,
-				"ocultismo": 0,
-				"politica": 0
-			}
-		},
-		"ventajas": {
-			"trasfondos": {
-				"aliados": 0,
-				"contactos": 0,
-				"equipo": 0,
-				"fama": 0,
-				"influencia": 0,
-				"recursos": 0
-			},
-			"fuerzadevoluntad": {
-				"temporal": 0,
-				"permanente": 0
-			},
-			"virtudes": {
-				"conciencia": 0,
-				"autocontrol": 0,
-				"coraje": 0
-			}
-		},
-		"salud": 0,
-		"experiencia": 0,
-		"meritos": {},
-		"defectos":	{},
-		"fechadenacimiento": "",
-		"edad": 0,
-		"pelo": "",
-		"raza": "",
-		"nacionalidad": "",
-		"estatura": 0,
-		"peso": 0,
-		"sexo": 0,
-		"lugardetrabajo": "",
-		"horariodetrabajo": "",
-		"descripcion": ""
-	}; 
-	this.nombre = nombre;
-	this.atributos = atr;
-	this.habilidades = hab;
-	this.htmlobj = document.createElement('div');
-	this.htmlobj.setAttribute('id', nombre);
-	this.htmlobj.setAttribute('class', 'personaje');
+	this.obj = (obj != null) ? obj : new Template(); 
+	this.htmlobj = null;
+	this.nuevo = function() {
+		self.obj = new Template();
+		self.render(document.getElementById('char-cont'));
+	};
 	this.generar = function() {
+		self.obj = new Template(); 
+		// Atributos
+		self.obj['Atributos'] = arquetipos[rand(0, arquetipos.length - 1)];
+		// Habilidades
+		var tipos = Object.keys(self.obj['Habilidades']);
+		var puntos_iniciales = [11, 7, 4];
+		var puntos = [11, 7, 4];
+		shuffle(tipos);
+		for(t in tipos) {
+			while(puntos[t] > 0) {
+				var tipo = tipos[t];
+				var habilidades_tipo = Object.keys(self.obj['Habilidades'][tipo]);
+				var habilidad_random = habilidades_tipo[rand(0, habilidades_tipo.length - 1)];
+				self.obj['Habilidades'][tipo][habilidad_random]++;
+				puntos[t]--;
+			}
+		}
+		// Renombrar propiedades
+		for(tipo in new Template()['Habilidades']) {
+			var i = tipos.indexOf(tipo);
+			var pool = puntos_iniciales[i];
+			old_key = tipo;
+			new_key = tipo + '(' + pool + ')';
+			if (old_key !== new_key) {
+		    Object.defineProperty(
+		    	self.obj['Habilidades'], 
+		    	new_key, 
+		    	Object.getOwnPropertyDescriptor(self.obj['Habilidades'], old_key)
+		    );
+		    delete self.obj['Habilidades'][old_key];
+			}
+		}
+		self.render(document.getElementById('char-cont'));
 	};
 	this.guardar = function() {
 	};
 	this.descargar = function() {
 	};
-	this.cargar = function() {
+	this.cargar = function(obj) {
+		self.obj = obj;
 	};
 	this.eliminar = function(id) {
 	};
-	this.append = function(target) {
-		target.appendChild(self.htmlobj);
+	this.render = function(contenedor) {
+		if(self.htmlobj != null) {
+			delete self.htmlobj;
+			while (contenedor.firstChild) {
+				contenedor.removeChild(contenedor.firstChild);
+			}
+		}
+		self.htmlobj = document.createElement('div');
+		//self.htmlobj.setAttribute('id', nombre);
+		self.htmlobj.setAttribute('class', 'personaje');
+		var row = document.createElement('div');
+		row.setAttribute('class', 'row');
+		var col1 = document.createElement('div');
+		col1.setAttribute('class', 'col-md-6');
+		row.appendChild(col1);
+		var col2 = document.createElement('div');
+		col2.setAttribute('class', 'col-md-6');
+		row.appendChild(col2);
+		count = 0;
+		for(var key in self.obj) {
+			count++;
+			//console.log(count + ': ' + key);
+			var type = typeof self.obj[key];
+			//console.log(key + ': ' + type);
+			if(count == 10) {
+				var linebreak = document.createElement('br');
+				self.htmlobj.appendChild(linebreak);
+			}
+			if(type == 'string') {
+				var label = document.createElement('label');
+				label.setAttribute('class', 'col-sm-2 col-form-label');
+				label.innerHTML = key;
+				var column = document.createElement('div');
+				column.setAttribute('class', 'col-sm-10');
+				var campo = document.createElement('input');
+				//campo.setAttribute('name', 'form-control');
+				campo.setAttribute('type', 'text');
+				campo.setAttribute('class', 'form-control');
+				//campo.setAttribute('placeholder', key);
+				column.appendChild(campo);
+				if(count < 4) {
+					var innerrow = document.createElement('div');
+					innerrow.setAttribute('class', 'row form-group');
+					innerrow.appendChild(label);
+					innerrow.appendChild(column);
+					col1.appendChild(innerrow);
+				} else if(count > 3 && count < 7) {
+					var innerrow = document.createElement('div');
+					innerrow.setAttribute('class', 'row form-group');
+					innerrow.appendChild(label);
+					innerrow.appendChild(column);
+					col2.appendChild(innerrow);
+				} else {
+					var row = document.createElement('div');
+					row.setAttribute('class', 'row form-group');
+					row.appendChild(label);
+					row.appendChild(column);
+				}
+			} else if(type == 'object') {
+				var titulo = document.createElement('h2');
+				titulo.setAttribute('class', 'text-center');
+				titulo.innerHTML = key;
+				self.htmlobj.appendChild(titulo);
+				var row = document.createElement('div');
+				row.setAttribute('class', 'row');
+				for(tipo in self.obj[key]) {
+					var col = document.createElement('div');
+					col.setAttribute('class', 'col-md-4');
+					var titulo = document.createElement('h3');
+					titulo.innerHTML = tipo;
+					col.appendChild(titulo);
+					for(h in self.obj[key][tipo]) {
+						var val = self.obj[key][tipo][h];
+						var rasgo = new Rasgo(h, val);
+						col.appendChild(rasgo.htmlobj);
+					}
+					row.appendChild(col);
+				}
+			} else if(type == 'number') {
+				var row = document.createElement('div');
+				row.setAttribute('class', 'row form-group');
+				var label = document.createElement('label');
+				label.setAttribute('class', 'col-sm-2 col-form-label');
+				label.innerHTML = key;
+				var column = document.createElement('div');
+				column.setAttribute('class', 'col-sm-10');
+				var campo = document.createElement('input');
+				//campo.setAttribute('name', 'form-control');
+				campo.setAttribute('type', 'number');
+				campo.setAttribute('class', 'form-control');
+				//campo.setAttribute('placeholder', key);
+				column.appendChild(campo);
+				row.appendChild(label);
+				row.appendChild(column);
+			}
+			self.htmlobj.appendChild(row);
+		}
+		contenedor.appendChild(self.htmlobj);
 	};
 };
-
-// Atributos
-var atributos = arquetipos[rand(0, arquetipos.length - 1)];
-var p = new Personaje('Juan Carlos', atributos, habilidades);
-var row = document.createElement('div');
-row.setAttribute('class', 'row');
-for(tipo in p.atributos) {
-	var col = document.createElement('div');
-	col.setAttribute('class', 'col-md-4');
-	var titulo = document.createElement('h3');
-	titulo.innerHTML = tipo;
-	col.appendChild(titulo);
-	for(a in p.atributos[tipo]) {
-		var val = p.atributos[tipo][a];
-		var atributo = new Rasgo(a, val);
-		col.appendChild(atributo.htmlobj);
-	}
-	row.appendChild(col);
-}
-var titulo = document.createElement('h2');
-titulo.innerHTML = 'Atributos';
-p.htmlobj.appendChild(titulo);
-p.htmlobj.appendChild(document.createElement('hr'));
-p.htmlobj.appendChild(row);
-p.htmlobj.appendChild(document.createElement('br'));
-p.htmlobj.appendChild(document.createElement('br'));
-
-// Habilidades
-var tipos = Object.keys(p.habilidades);
-var puntos_iniciales = [11, 7, 4];
-var puntos = [11, 7, 4];
-shuffle(tipos);
-for(t in tipos) {
-	while(puntos[t] > 0) {
-		var tipo = tipos[t];
-		var habilidades_tipo = Object.keys(p.habilidades[tipo]);
-		var habilidad_random = habilidades_tipo[rand(0, habilidades_tipo.length - 1)];
-		p.habilidades[tipo][habilidad_random]++;
-		puntos[t]--;
-	}
-}
-var row = document.createElement('div');
-row.setAttribute('class', 'row');
-for(tipo in p.habilidades) {
-	var col = document.createElement('div');
-	col.setAttribute('class', 'col-md-4');
-	var i = tipos.indexOf(tipo);
-	var pool = puntos_iniciales[i];
-	var titulo = document.createElement('h3');
-	titulo.innerHTML = tipo + '(' + pool + ')';
-	col.appendChild(titulo);
-	for(h in p.habilidades[tipo]) {
-		var val = p.habilidades[tipo][h];
-		var habilidad = new Rasgo(h, val);
-		col.appendChild(habilidad.htmlobj);
-	}
-	row.appendChild(col);
-}
-var titulo = document.createElement('h2');
-titulo.innerHTML = 'Habilidades';
-p.htmlobj.appendChild(titulo);
-p.htmlobj.appendChild(document.createElement('hr'));
-p.htmlobj.appendChild(row);
-p.htmlobj.appendChild(document.createElement('br'));
-p.htmlobj.appendChild(document.createElement('br'));
-
-// Mostrar Personaje
-p.append(document.getElementById('main'));
