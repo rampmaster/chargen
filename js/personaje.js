@@ -105,10 +105,10 @@ var Personaje = function(obj = null) {
 	this.htmlobj = null;
 	this.generar = function() {
 		console.log('Generando personaje');
-		//self.obj = new Template(); 
 		// Atributos
 		self.obj['Atributos'] = arquetipos[rand(0, arquetipos.length - 1)];
 		// Habilidades
+		self.obj['Habilidades'] = new Template()['Habilidades'];
 		var tipos = Object.keys(self.obj['Habilidades']);
 		var puntos_iniciales = [11, 7, 4];
 		var puntos = [11, 7, 4];
@@ -123,19 +123,13 @@ var Personaje = function(obj = null) {
 			}
 		}
 		// Renombrar propiedades
-		for(tipo in new Template()['Habilidades']) {
+		for(tipo in self.obj['Habilidades']) {
+			console.log(tipo);
 			var i = tipos.indexOf(tipo);
 			var pool = puntos_iniciales[i];
-			old_key = tipo;
 			new_key = tipo + '(' + pool + ')';
-			if (old_key !== new_key) {
-		    Object.defineProperty(
-		    	self.obj['Habilidades'], 
-		    	new_key, 
-		    	Object.getOwnPropertyDescriptor(self.obj['Habilidades'], old_key)
-		    );
-		    delete self.obj['Habilidades'][old_key];
-			}
+			Object.defineProperty(self.obj['Habilidades'], new_key, Object.getOwnPropertyDescriptor(self.obj['Habilidades'], tipo));
+	    delete self.obj['Habilidades'][tipo];
 		}
 		self.render(document.getElementById('char-cont'));
 	};
@@ -147,7 +141,6 @@ var Personaje = function(obj = null) {
 			}
 		}
 		self.htmlobj = document.createElement('div');
-		//self.htmlobj.setAttribute('id', nombre);
 		self.htmlobj.setAttribute('class', 'personaje');
 		var row = document.createElement('div');
 		row.setAttribute('class', 'row');
@@ -160,9 +153,7 @@ var Personaje = function(obj = null) {
 		count = 0;
 		for(var key in self.obj) {
 			count++;
-			//console.log(count + ': ' + key);
 			var type = typeof self.obj[key];
-			//console.log(key + ': ' + type);
 			if(count == 10) {
 				var linebreak = document.createElement('br');
 				self.htmlobj.appendChild(linebreak);
@@ -174,7 +165,6 @@ var Personaje = function(obj = null) {
 				var column = document.createElement('div');
 				column.setAttribute('class', 'col-sm-10');
 				var campo = document.createElement('input');
-				//campo.setAttribute('name', 'form-control');
 				campo.setAttribute('id', key);
 				campo.setAttribute('type', 'text');
 				campo.setAttribute('class', 'form-control');
@@ -182,10 +172,8 @@ var Personaje = function(obj = null) {
 				campo.addEventListener('change', function(){
 					self.obj[this.id] = this.value;
 					console.log(self.obj[this.id]);
-					//self.render(document.getElementById('char-cont'));
 					console.log(this.id + ' actualizado.');
 				});
-				//campo.setAttribute('placeholder', key);
 				column.appendChild(campo);
 				if(count < 4) {
 					var innerrow = document.createElement('div');
@@ -251,7 +239,6 @@ var Personaje = function(obj = null) {
 					self.render(document.getElementById('char-cont'));
 					console.log(this.id + ' actualizado.');
 				});
-				//campo.setAttribute('placeholder', key);
 				column.appendChild(campo);
 				row.appendChild(label);
 				row.appendChild(column);
@@ -268,7 +255,5 @@ var Personaje = function(obj = null) {
 	this.nuevo = function() {
 		console.log('Personaje nuevo');
 		window.location.replace(window.location.pathname + window.location.search + window.location.hash);
-		//self.obj = new Template();
-		//self.render(document.getElementById('char-cont'));
 	};
 };
