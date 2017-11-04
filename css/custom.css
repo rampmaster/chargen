@@ -1,3 +1,10 @@
 button {
 	border: none;
 }
+#cargar {
+	padding: 6px 12px;
+	color: dodgerblue;
+}
+#myform {
+	display: inline-block;
+}
