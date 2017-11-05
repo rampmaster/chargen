@@ -10,7 +10,7 @@ var Punto = function(i, temp = false) {
 			if(rasgo.valor < punto) {
 				a[i].style.backgroundColor = '#999';
 			} else {
-				a[i].style.backgroundColor = '#600';
+				a[i].style.backgroundColor = '#e00';
 			}
 		});
 	}

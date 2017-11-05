@@ -253,9 +253,11 @@ var Personaje = function(obj = null) {
 						for(h in self.obj[key][tipo]) {
 							var val = self.obj[key][tipo][h];
 							if(h == 'Temporal') {
+								titulo.setAttribute('class', 'text-center');
 								var ventaja = new Ventaja(h, self.obj[key][tipo], val, true);
 								col.appendChild(ventaja.htmlobj);
 							} else if(h == 'Permanente') {
+								titulo.setAttribute('class', 'text-center');
 								var ventaja = new Ventaja(h, self.obj[key][tipo], val);
 								col.appendChild(ventaja.htmlobj);
 							} else {
