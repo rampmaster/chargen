@@ -84,10 +84,10 @@ var Template = function() {
 			}
 		},
 		'Salud': {
-			'Letal': {
+			'Daño normal': {
 				'Temporal': 0
 			},
-			'Agravado': {
+			'Daño Agravado': {
 				'Temporal': 0
 			}
 		},
