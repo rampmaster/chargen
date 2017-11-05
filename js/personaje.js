@@ -135,7 +135,6 @@ var Personaje = function(obj = null) {
 		}
 		// Renombrar propiedades
 		for(tipo in self.obj['Habilidades']) {
-			//console.log(tipo);
 			var i = tipos.indexOf(tipo);
 			var pool = puntos_iniciales[i];
 			new_key = tipo + '(' + pool + ')';
@@ -209,8 +208,6 @@ var Personaje = function(obj = null) {
 				campo.setAttribute('value', (self.obj[key] != undefined) ? self.obj[key] : '');
 				campo.addEventListener('change', function(){
 					self.obj[this.id] = this.value;
-					console.log(self.obj[this.id]);
-					console.log(this.id + ' actualizado.');
 				});
 				column.appendChild(campo);
 				if(count < 4) {
@@ -241,9 +238,7 @@ var Personaje = function(obj = null) {
 				if(key == 'Salud') {
 					var col = document.createElement('div');
 					col.setAttribute('class', 'col-md-4 col-md-offset-4');
-					//console.log(self.obj[key]);
 					for(tipo in self.obj[key]) {
-						//console.log(self.obj[key][tipo]);
 						var salud = new Salud(tipo, self.obj[key][tipo], 0, true);
 						col.appendChild(salud.htmlobj);
 						row.appendChild(col);
@@ -287,7 +282,6 @@ var Personaje = function(obj = null) {
 				campo.addEventListener('change', function(){
 					self.obj[this.id] = this.value;
 					self.render(document.getElementById('char-cont'));
-					console.log(this.id + ' actualizado.');
 				});
 				column.appendChild(campo);
 				row.appendChild(label);

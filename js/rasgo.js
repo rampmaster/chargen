@@ -5,12 +5,12 @@ var Punto = function(i, temp = false) {
 	this.render = function(rasgo) {
 		var puntos = rasgo.htmlobj.getElementsByClassName('punto');
 		puntos = [].slice.call(puntos);
-		for (var i = 0; i < puntos.length; i++) {
-			puntos[i].style.backgroundColor = '#999';
-		}
 		puntos.forEach(function(e, i, a) {
-			if(rasgo.valor >= parseInt(puntos[i].getAttribute('data-punto'))) {
-				puntos[i].style.backgroundColor = '#600';
+			var punto = parseInt(a[i].getAttribute('data-punto'));
+			if(rasgo.valor < punto) {
+				a[i].style.backgroundColor = '#999';
+			} else {
+				a[i].style.backgroundColor = '#600';
 			}
 		});
 	}
@@ -32,7 +32,6 @@ var Rasgo = function(nombre, obj, valor = null) {
 	this.htmlobj.appendChild(puntos);
 	for (var i = 1; i <= 5; i++) {
 		var p = new Punto(i);
-		p.render(self);
 		p.htmlobj.addEventListener('click', function(e) {
 			var punto = e.target.getAttribute('data-punto');
 			self.valor = (self.valor == punto) ? self.valor - 1 : punto;
@@ -40,6 +39,7 @@ var Rasgo = function(nombre, obj, valor = null) {
 			p.render(self);
 		});
 		puntos.appendChild(p.htmlobj);
+		p.render(self);
 	}
 }
 var Ventaja = function(nombre, obj, valor = null, temp = false) {
@@ -66,7 +66,6 @@ var Ventaja = function(nombre, obj, valor = null, temp = false) {
 	}
 }
 var Salud = function(nombre, obj, valor = null, temp = false) {
-	//console.log(obj);
 	var self = this;
 	this.nombre = nombre;
 	this.valor = (valor) ? valor : 0;
@@ -87,7 +86,6 @@ var Salud = function(nombre, obj, valor = null, temp = false) {
 		p.htmlobj.addEventListener('click', function(e) {
 			var punto = e.target.getAttribute('data-punto');
 			self.valor = (self.valor == punto) ? self.valor - 1 : punto;
-			console.log(obj);
 			obj[nombre] = self.valor;
 			p.render(self);
 		});
