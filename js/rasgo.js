@@ -6,7 +6,8 @@ var Punto = function(i, temp = false) {
 		var puntos = rasgo.htmlobj.getElementsByClassName('punto');
 		puntos = [].slice.call(puntos);
 		for (var i = 0; i < puntos.length; i++) {
-			puntos[i].style.backgroundColor = 'white';
+			console.log(i);
+			puntos[i].style.backgroundColor = '#999';
 		}
 		puntos.forEach(function(e, i, a) {
 			if(rasgo.valor >= parseInt(puntos[i].getAttribute('data-punto'))) {

@@ -1,10 +1,32 @@
+body {
+	background-color: #333;
+	color: #ccc;
+	letter-spacing: 1px;
+}
 button {
+	display: inline-block;
+	margin-bottom: .6em;
+	letter-spacing: 1px;
+}
+h1 {
+	color: white;
+}
+.form-control {
 	border: none;
+	background-color: #999;
+	color: white;
 }
 #cargar {
 	padding: 6px 12px;
-	color: dodgerblue;
+	color: white;
 }
 #myform {
 	display: inline-block;
+}
+a {
+	color: darkred;
+}
+.btn {
+	background-color: darkred;
+	border: none;
 }

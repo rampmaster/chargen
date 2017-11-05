@@ -2,32 +2,33 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no">
 	<title>Generador de Personaje</title>
-	<link rel="stylesheet" type="text/css" href="css/custom.css">
 	<link rel="stylesheet" type="text/css" href="css/rasgo.css">
 	<link rel="shortcut icon" type="image/png" href="http://tao.cl/img/fav.png">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="css/custom.css">
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body>
 	<div id="main" class="container">
 		<h1>Generador de Personaje</h1>
+		<!--
 		<div class="form-group">
 			<select class="form-control">
 				<option value="" disabled selected>Seleccionar Personaje</option>
 			</select>
 		</div>
-		<div class="form-group">
-			<button id="nuevo" class="btn btn-primary">Nuevo</button>
-			<button id="generar" class="btn btn-primary">Generar</button>
-			<button id="guardar" title="Guarda el personaje en una base de datos Firebase. Aún no hay forma de obtener y mostrar los personajes guardados." class="btn btn-primary" disabled>Guardar</button>
-			<button id="descargar" class="btn btn-primary">Descargar</button>
-			<span id="cargar">Cargar > ></span>
-			<form id="myform">
-				<input id="myfile" name="files[]" multiple="" type="file" />
-			</form>
-			<button id="eliminar" title="To do." class="btn btn-danger" disabled>Eliminar</button>
-		</div>
+	-->
+		<button id="nuevo" class="btn btn-primary"><i class="fa fa-file"></i> Nuevo</button>
+		<button id="generar" class="btn btn-primary"><i class="fa fa-user"></i> Generar</button>
+		<!--<button id="guardar" title="Guarda el personaje en una base de datos Firebase. Aún no hay forma de obtener y mostrar los personajes guardados." class="btn btn-primary" disabled><i class="fa fa-save"></i> Guardar</button>-->
+		<button id="descargar" class="btn btn-primary"><i class="fa fa-download"></i> Descargar</button>
+		<span id="cargar"><i class="fa fa-upload"></i> Cargar:</span>
+		<form id="myform">
+			<input id="myfile" name="files[]" multiple="" type="file" />
+		</form>
+		<!--<button id="eliminar" title="To do." class="btn btn-danger" disabled><i class="fa fa-trash"></i> Eliminar</button>-->
 		<hr>
 		<div id="char-cont"></div>
 	</div>

@@ -21,6 +21,7 @@
 	display: inline-block;
 	position: relative;
 	top: -.2em;
+	background-color: #999;
 }
 .ventaja .puntos {
 	display: block !important;
@@ -28,7 +29,6 @@
 }
 .temp {
 	border-radius: 0;
-	border-color: #555;
 }
 .puntos {
 	display: inline-block;
