@@ -30,26 +30,13 @@ h2, h3, .lb {
 #myform {
 	display: inline-block;
 }
-a {
-	color: #e00;
-}
-.btn {
-	background-color: #e00;
+a, a:link, a:visited, .btn, .btn:link, .btn:visited {
 	border: none;
+	background-color: #e00;
+	color: white;
 }
-.btn:link,
-.btn:visited,
-.btn:hover,
-.btn:focus,
-.btn:active {
-	background-color: #600;
-}
-a:link,
-a:visited,
-a:hover,
-a:focus,
-a:active {
-	background-color: #600;
+a:hover, a:focus, a:active, .btn:hover, .btn:focus, .btn:active {
+	background-color: #600 !important;
 }
 .ventaja .puntos {
 	text-align: center;
