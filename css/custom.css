@@ -41,3 +41,6 @@ a:hover, a:focus, a:active, .btn:hover, .btn:focus, .btn:active {
 .ventaja .puntos {
 	text-align: center;
 }
+.punto {
+	cursor: pointer;
+}
