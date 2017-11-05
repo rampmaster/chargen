@@ -8,8 +8,11 @@ button {
 	margin-bottom: .6em;
 	letter-spacing: 1px;
 }
-h1 {
+h1, h2, h3, .lb {
 	color: white;
+}
+.lb {
+	font-size: 1.2em;
 }
 .form-control {
 	border: none;
@@ -29,4 +32,18 @@ a {
 .btn {
 	background-color: darkred;
 	border: none;
+}
+.btn:link,
+.btn:visited,
+.btn:hover,
+.btn:focus,
+.btn:active {
+	background-color: #600;
+}
+a:link,
+a:visited,
+a:hover,
+a:focus,
+a:active {
+	background-color: #600;
 }
