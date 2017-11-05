@@ -240,7 +240,7 @@ var Personaje = function(obj = null) {
 				row.setAttribute('class', 'row');
 				if(key == 'Salud') {
 					var col = document.createElement('div');
-					col.setAttribute('class', 'col-md-4');
+					col.setAttribute('class', 'col-md-12');
 					//console.log(self.obj[key]);
 					for(tipo in self.obj[key]) {
 						//console.log(self.obj[key][tipo]);
