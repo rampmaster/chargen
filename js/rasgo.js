@@ -55,7 +55,6 @@ var Ventaja = function(nombre, obj, valor = null, temp = false) {
 	this.htmlobj.appendChild(puntos);
 	for (var i = 1; i <= 10; i++) {
 		var p = new Punto(i, temp);
-		p.render(self);
 		p.htmlobj.addEventListener('click', function(e) {
 			var punto = e.target.getAttribute('data-punto');
 			self.valor = (self.valor == punto) ? self.valor - 1 : punto;
@@ -63,6 +62,7 @@ var Ventaja = function(nombre, obj, valor = null, temp = false) {
 			p.render(self);
 		});
 		puntos.appendChild(p.htmlobj);
+		p.render(self);
 	}
 }
 var Salud = function(nombre, obj, valor = null, temp = false) {
@@ -82,7 +82,6 @@ var Salud = function(nombre, obj, valor = null, temp = false) {
 	this.htmlobj.appendChild(puntos);
 	for (var i = 1; i <= 7; i++) {
 		var p = new Punto(i, temp);
-		p.render(self);
 		p.htmlobj.addEventListener('click', function(e) {
 			var punto = e.target.getAttribute('data-punto');
 			self.valor = (self.valor == punto) ? self.valor - 1 : punto;
@@ -90,5 +89,6 @@ var Salud = function(nombre, obj, valor = null, temp = false) {
 			p.render(self);
 		});
 		puntos.appendChild(p.htmlobj);
+		p.render(self);
 	}
 }
