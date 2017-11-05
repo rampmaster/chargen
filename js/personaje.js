@@ -70,17 +70,17 @@ var Template = function() {
 				'Influencia': 0,
 				'Recursos': 0
 			},
+			'Virtudes': {
+				'Conciencia': 1,
+				'Autocontrol': 1,
+				'Coraje': 1
+			},
 			'Humanidad': {
 				'Permanente': 7
 			},
 			'Fuerza de Voluntad': {
 				'Permanente': 0,
 				'Temporal': 0
-			},
-			'Virtudes': {
-				'Conciencia': 1,
-				'Autocontrol': 1,
-				'Coraje': 1
 			}
 		},
 		'Salud': {
