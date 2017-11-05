@@ -80,7 +80,17 @@ var Template = function() {
 				'Coraje': 1
 			}
 		},
-		'Salud': 0,
+		'Salud': {
+			'Contundente': {
+				'Temporal': 0
+			},
+			'Letal': {
+				'Temporal': 0
+			},
+			'Agravado': {
+				'Temporal': 0
+			}
+		},
 		'Experiencia': 0,
 		/*
 		'Méritos': {},
@@ -154,8 +164,12 @@ var Personaje = function(obj = null) {
 		for(var key in self.obj) {
 			count++;
 			var type = typeof self.obj[key];
+			console.log(count);
 			if(count == 10) {
 				var linebreak = document.createElement('br');
+				self.htmlobj.appendChild(linebreak);
+			} else if(count == 11) {
+				var linebreak = document.createElement('hr');
 				self.htmlobj.appendChild(linebreak);
 			}
 			if(type == 'string') {
@@ -224,6 +238,7 @@ var Personaje = function(obj = null) {
 			} else if(type == 'number') {
 				var row = document.createElement('div');
 				row.setAttribute('class', 'row form-group');
+				console.log(key);
 				var label = document.createElement('label');
 				label.setAttribute('class', 'col-sm-2 col-form-label');
 				label.innerHTML = key;
