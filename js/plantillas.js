@@ -1,4 +1,4 @@
-var Template = function() {
+var Plantilla = function() {
 	return {
 		'Nombre': '',
 		'Jugador': '',
@@ -75,8 +75,8 @@ var Template = function() {
 				'Autocontrol': 1,
 				'Coraje': 1
 			},
-			'Humanidad': {
-				'Permanente': 7
+			'Fé': {
+				'Permanente': 0
 			},
 			'Fuerza de Voluntad': {
 				'Permanente': 0,
@@ -105,7 +105,7 @@ var Template = function() {
 		'Sexo': 0,
 		'Lugar de Trabajo': '',
 		'Horario de Trabajo': '',
-		'Descripcion': ''
 		*/
+		'Descripción': ''
 	};
 };

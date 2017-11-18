@@ -1,17 +1,18 @@
 var Personaje = function(obj = null) {
 	var self = this;
-	this.obj = (obj != null) ? obj : new Template(); 
+	this.obj = (obj != null) ? obj : new Plantilla();
+	this.atributos_iniciales = [6, 4, 3];
+	this.puntos_iniciales = [11, 7, 4];
 	this.htmlobj = null;
 	this.generar = function() {
 		console.log('Generando personaje');
-		var newTemplate = new Template();
+		var newPlantilla = new Plantilla();
 		// Atributos
 		self.obj['Atributos'] = arquetipos[rand(0, arquetipos.length - 1)];
 		// Habilidades
-		self.obj['Habilidades'] = newTemplate['Habilidades'];
+		self.obj['Habilidades'] = newPlantilla['Habilidades'];
 		var tipos = Object.keys(self.obj['Habilidades']);
-		var puntos_iniciales = [11, 7, 4];
-		var puntos = [11, 7, 4];
+		var puntos = this.puntos_iniciales.slice();
 		shuffle(tipos);
 		for(t in tipos) {
 			while(puntos[t] > 0) {
@@ -25,13 +26,13 @@ var Personaje = function(obj = null) {
 		// Renombrar propiedades
 		for(tipo in self.obj['Habilidades']) {
 			var i = tipos.indexOf(tipo);
-			var pool = puntos_iniciales[i];
+			var pool = this.puntos_iniciales[i];
 			new_key = tipo + '(' + pool + ')';
 			Object.defineProperty(self.obj['Habilidades'], new_key, Object.getOwnPropertyDescriptor(self.obj['Habilidades'], tipo));
 	    delete self.obj['Habilidades'][tipo];
 		}
 		// Trasfondos
-		self.obj['Ventajas']['Trasfondos'] = newTemplate['Ventajas']['Trasfondos'];
+		self.obj['Ventajas']['Trasfondos'] = newPlantilla['Ventajas']['Trasfondos'];
 		var puntos = 5;
 		while(puntos > 0) {
 			var trasfondos = Object.keys(self.obj['Ventajas']['Trasfondos']);
@@ -40,7 +41,7 @@ var Personaje = function(obj = null) {
 			puntos--;
 		}
 		// Virtudes
-		self.obj['Ventajas']['Virtudes'] = newTemplate['Ventajas']['Virtudes'];
+		self.obj['Ventajas']['Virtudes'] = newPlantilla['Ventajas']['Virtudes'];
 		var puntos = 7;
 		while(puntos > 0) {
 			var virtudes = Object.keys(self.obj['Ventajas']['Virtudes']);
@@ -54,7 +55,7 @@ var Personaje = function(obj = null) {
 		self.obj['Ventajas']['Fuerza de Voluntad']['Temporal'] = coraje;
 		self.render(document.getElementById('char-cont'));
 		// Salud
-		self.obj['Salud'] = newTemplate['Salud'];
+		self.obj['Salud'] = newPlantilla['Salud'];
 	};
 	this.render = function(contenedor) {
 		if(self.htmlobj != null) {
@@ -90,11 +91,19 @@ var Personaje = function(obj = null) {
 				label.innerHTML = key;
 				var column = document.createElement('div');
 				column.setAttribute('class', 'col-sm-10');
-				var campo = document.createElement('input');
-				campo.setAttribute('id', key);
-				campo.setAttribute('type', 'text');
-				campo.setAttribute('class', 'form-control');
-				campo.setAttribute('value', (self.obj[key] != undefined) ? self.obj[key] : '');
+				console.log(key);
+				if(key != 'Descripción') {
+					var campo = document.createElement('input');
+					campo.setAttribute('id', key);
+					campo.setAttribute('type', 'text');
+					campo.setAttribute('class', 'form-control');
+					campo.setAttribute('value', (self.obj[key] != undefined) ? self.obj[key] : '');
+				} else {
+					var campo = document.createElement('textarea');
+					campo.setAttribute('id', key);
+					campo.setAttribute('class', 'form-control');
+					campo.innerHTML = (self.obj[key] != undefined) ? self.obj[key] : '';
+				}
 				campo.addEventListener('change', function(){
 					self.obj[this.id] = this.value;
 				});
@@ -124,7 +133,8 @@ var Personaje = function(obj = null) {
 				self.htmlobj.appendChild(titulo);
 				var row = document.createElement('div');
 				row.setAttribute('class', 'row');
-				if(key == 'Salud') {
+				if(key == 'Fé') {
+				} else if(key == 'Salud') {
 					var col = document.createElement('div');
 					col.setAttribute('class', 'col-md-4 col-md-offset-4');
 					for(tipo in self.obj[key]) {
@@ -179,13 +189,13 @@ var Personaje = function(obj = null) {
 				row.appendChild(column);
 			}
 			self.htmlobj.appendChild(row);
-			if(count == 11) {
+			if(count == 12) {
 				var linebreak = document.createElement('hr');
 				self.htmlobj.appendChild(linebreak);
 				var parrafo = document.createElement('p') 
 				parrafo.setAttribute('class', 'text-center');
 				var legend = document.createElement('i');
-				legend.innerHTML = 'Atributos: 6/4/3 · Habilidades: 11/7/4 · Trasfondos: 5 · Virtudes: 7 · Puntos Gratis: 21(5/2/1)';
+				legend.innerHTML = 'Atributos: ' + this.atributos_iniciales[0] + '/' + this.atributos_iniciales[1] + '/' + this.atributos_iniciales[2] + ' · Habilidades: ' + this.puntos_iniciales[0] + '/' + this.puntos_iniciales[1] + '/' + this.puntos_iniciales[2] + ' · Trasfondos: 5 · Virtudes: 7 · Puntos Gratis: 21(5/2/1)';
 				parrafo.appendChild(legend);
 				self.htmlobj.appendChild(parrafo);
 			}

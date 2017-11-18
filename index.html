@@ -24,10 +24,30 @@
 		<button id="generar" class="btn btn-primary"><i class="fa fa-user"></i> Generar</button>
 		<!--<button id="guardar" title="Guarda el personaje en una base de datos Firebase. Aún no hay forma de obtener y mostrar los personajes guardados." class="btn btn-primary" disabled><i class="fa fa-save"></i> Guardar</button>-->
 		<button id="descargar" class="btn btn-primary"><i class="fa fa-download"></i> Descargar</button>
-		<span id="cargar"><i class="fa fa-upload"></i> Cargar:</span>
 		<form id="myform">
-			<input id="myfile" name="files[]" multiple="" type="file" />
+			<p>
+				<span id="cargar"><i class="fa fa-upload"></i> Cargar:</span>
+				<input id="myfile" name="files[]" multiple="" type="file" />
+			</p>
 		</form>
+		<div class="row">
+			<div class="col-md-1">
+				<p>Plantilla:</p> 
+			</div>
+			<div class="col-md-11">
+				<select class="form-control">
+					<option value="">Humano</option>
+					<option value="" disabled>Vampiro</option>
+					<option value="" disabled>Hombre Lobo</option>
+					<option value="" disabled>Mago</option>
+					<option value="" disabled>Fantasma</option>
+					<option value="" disabled>Hada</option>
+					<option value="" disabled>Cazador</option>
+					<option value="" disabled>Momia</option>
+					<option value="" disabled>Demonio</option>
+				</select>
+			</div>
+		</div>
 		<!--<button id="eliminar" title="To do." class="btn btn-danger" disabled><i class="fa fa-trash"></i> Eliminar</button>-->
 		<hr>
 		<div id="char-cont"></div>
