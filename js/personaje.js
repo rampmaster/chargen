@@ -91,7 +91,6 @@ var Personaje = function(obj = null) {
 				label.innerHTML = key;
 				var column = document.createElement('div');
 				column.setAttribute('class', 'col-sm-10');
-				console.log(key);
 				if(key != 'Descripción') {
 					var campo = document.createElement('input');
 					campo.setAttribute('id', key);
@@ -134,6 +133,7 @@ var Personaje = function(obj = null) {
 				var row = document.createElement('div');
 				row.setAttribute('class', 'row');
 				if(key == 'Fé') {
+					console.log('Fé');
 				} else if(key == 'Salud') {
 					var col = document.createElement('div');
 					col.setAttribute('class', 'col-md-4 col-md-offset-4');

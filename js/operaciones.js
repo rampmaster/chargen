@@ -1,17 +1,19 @@
-$('#nuevo').click(function(){
+document.getElementById('nuevo').onclick = function() {
 	p.nuevo();
-});
-$('#generar').click(function(){
+};
+document.getElementById('generar').onclick = function() {
 	p.generar();
-});
-$('#guardar').click(function(){
+};
+/*
+document.getElementById('guardar').onclick = function() {
 	ref.push(p.obj);
 	console.log('Personaje guardado');
-});
-$('#descargar').click(function(){
+};
+*/
+document.getElementById('descargar').onclick = function() {
 	console.log('Iniciando descarga');
 	download(JSON.stringify(p.obj, null, 4), 'personaje.json', 'text/plain');
-});
+};
 // Cargar
 document.forms['myform'].elements['myfile'].onchange = function(evt) {
   if(!window.FileReader) return; // Browser is not compatible
