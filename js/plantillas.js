@@ -6,6 +6,7 @@ var Plantilla = function() {
 		'Naturaleza': '',
 		'Conducta': '',
 		'Concepto': '',
+		'Descripción': '',
 		'Atributos': {
 			'Físicos': {
 				'Fuerza': 1,
@@ -95,6 +96,7 @@ var Plantilla = function() {
 			}
 		},
 		'Experiencia': 0,
+		'Experiencia Total': 0,
 		/*
 		'Méritos': {},
 		'Defectos':	{},
@@ -109,6 +111,5 @@ var Plantilla = function() {
 		'Lugar de Trabajo': '',
 		'Horario de Trabajo': '',
 		*/
-		'Descripción': ''
 	};
 };

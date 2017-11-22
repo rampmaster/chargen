@@ -33,6 +33,7 @@ h2, h3, .lb {
 }
 #myform input {
 	display: inline;
+	width: auto;
 }
 a, a:link, a:visited, .btn, .btn:link, .btn:visited {
 	border: none;
@@ -47,4 +48,7 @@ a:hover, a:focus, a:active, .btn:hover, .btn:focus, .btn:active {
 }
 .punto {
 	cursor: pointer;
+}
+hr {
+	opacity: 1;
 }

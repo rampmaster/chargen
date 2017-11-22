@@ -137,15 +137,12 @@ var Personaje = function(obj = null) {
 				self.htmlobj.appendChild(titulo);
 				var row = document.createElement('div');
 				row.setAttribute('class', 'row');
-				if(key == 'Fé') {
-					titulo.setAttribute('class', 'text-center');
-					var ventaja = new Ventaja(h, self.obj[key][tipo], val, null, 5);
-					col.appendChild(ventaja.htmlobj);
-				} else if(key == 'Salud') {
+				if(key == 'Salud') {
 					var col = document.createElement('div');
 					col.setAttribute('class', 'col-md-4 col-md-offset-4');
 					for(tipo in self.obj[key]) {
-						var salud = new Salud(tipo, self.obj[key][tipo], 0, true);
+						var val = self.obj[key][tipo]['Temporal'];
+						var salud = new Salud(tipo, self.obj[key][tipo], val, true);
 						col.appendChild(salud.htmlobj);
 						row.appendChild(col);
 					}
@@ -156,19 +153,26 @@ var Personaje = function(obj = null) {
 						var titulo = document.createElement('h3');
 						titulo.innerHTML = tipo;
 						col.appendChild(titulo);
-						for(h in self.obj[key][tipo]) {
-							var val = self.obj[key][tipo][h];
-							if(h == 'Temporal') {
-								titulo.setAttribute('class', 'text-center');
-								var ventaja = new Ventaja(h, self.obj[key][tipo], val, true);
-								col.appendChild(ventaja.htmlobj);
-							} else if(h == 'Permanente') {
-								titulo.setAttribute('class', 'text-center');
-								var ventaja = new Ventaja(h, self.obj[key][tipo], val);
-								col.appendChild(ventaja.htmlobj);
-							} else {
-								var rasgo = new Rasgo(h, self.obj[key][tipo], val);
-								col.appendChild(rasgo.htmlobj);
+						if(tipo == 'Fé') {
+							titulo.setAttribute('class', 'text-center');
+							var val = self.obj['Ventajas']['Fé']['Permanente'];
+							var ventaja = new Ventaja(tipo, self.obj[key][tipo], val, false, 5);
+							col.appendChild(ventaja.htmlobj);
+						} else {
+							for(h in self.obj[key][tipo]) {
+								var val = self.obj[key][tipo][h];
+								if(h == 'Temporal') {
+									titulo.setAttribute('class', 'text-center');
+									var ventaja = new Ventaja(h, self.obj[key][tipo], val, true);
+									col.appendChild(ventaja.htmlobj);
+								} else if(h == 'Permanente') {
+									titulo.setAttribute('class', 'text-center');
+									var ventaja = new Ventaja(h, self.obj[key][tipo], val);
+									col.appendChild(ventaja.htmlobj);
+								} else {
+									var rasgo = new Rasgo(h, self.obj[key][tipo], val);
+									col.appendChild(rasgo.htmlobj);
+								}
 							}
 						}
 						row.appendChild(col);
@@ -196,7 +200,19 @@ var Personaje = function(obj = null) {
 				row.appendChild(column);
 			}
 			self.htmlobj.appendChild(row);
-			if(count == 12) {
+			if(count == 6) {
+				var linebreak = document.createElement('hr');
+				self.htmlobj.appendChild(linebreak);
+			}
+			if(count == 7) {
+				var linebreak = document.createElement('hr');
+				self.htmlobj.appendChild(linebreak);
+			}
+			if(count == 11) {
+				var linebreak = document.createElement('br');
+				self.htmlobj.appendChild(linebreak);
+			}
+			if(count == 13) {
 				var linebreak = document.createElement('hr');
 				self.htmlobj.appendChild(linebreak);
 				var parrafo = document.createElement('p') 
