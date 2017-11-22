@@ -42,7 +42,7 @@ var Rasgo = function(nombre, obj, valor = null) {
 		p.render(self);
 	}
 }
-var Ventaja = function(nombre, obj, valor = null, temp = false) {
+var Ventaja = function(nombre, obj, valor = null, temp = false, dot_qt = null) {
 	var self = this;
 	this.nombre = nombre;
 	this.valor = (valor) ? valor : 0;
@@ -53,7 +53,8 @@ var Ventaja = function(nombre, obj, valor = null, temp = false) {
 	puntos.setAttribute('id', 'puntos-' + nombre);
 	puntos.setAttribute('class', 'puntos');
 	this.htmlobj.appendChild(puntos);
-	for (var i = 1; i <= 10; i++) {
+	var dot_qt = ((dot_qt == null) ? 10 : dot_qt);
+	for (var i = 1; i <= dot_qt; i++) {
 		var p = new Punto(i, temp);
 		p.htmlobj.addEventListener('click', function(e) {
 			var punto = e.target.getAttribute('data-punto');

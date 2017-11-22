@@ -49,10 +49,15 @@ var Personaje = function(obj = null) {
 			self.obj['Ventajas']['Virtudes'][virtudRandom]++;
 			puntos--;
 		}
+		// Humanidad
+		var conciencia = self.obj['Ventajas']['Virtudes']['Conciencia'];
+		var autocontrol = self.obj['Ventajas']['Virtudes']['Autocontrol']; 
+		var humanidad = conciencia + autocontrol;
+		self.obj['Ventajas']['Humanidad']['Permanente'] = humanidad;
 		// Fuerza de Voluntad
-		var coraje = self.obj['Ventajas']['Virtudes']['Coraje'];
-		self.obj['Ventajas']['Fuerza de Voluntad']['Permanente'] = coraje;
-		self.obj['Ventajas']['Fuerza de Voluntad']['Temporal'] = coraje;
+		var fuerza_de_voluntad = self.obj['Ventajas']['Virtudes']['Coraje'];
+		self.obj['Ventajas']['Fuerza de Voluntad']['Permanente'] = fuerza_de_voluntad;
+		self.obj['Ventajas']['Fuerza de Voluntad']['Temporal'] = fuerza_de_voluntad;
 		self.render(document.getElementById('char-cont'));
 		// Salud
 		self.obj['Salud'] = newPlantilla['Salud'];
@@ -133,7 +138,9 @@ var Personaje = function(obj = null) {
 				var row = document.createElement('div');
 				row.setAttribute('class', 'row');
 				if(key == 'Fé') {
-					console.log('Fé');
+					titulo.setAttribute('class', 'text-center');
+					var ventaja = new Ventaja(h, self.obj[key][tipo], val, null, 5);
+					col.appendChild(ventaja.htmlobj);
 				} else if(key == 'Salud') {
 					var col = document.createElement('div');
 					col.setAttribute('class', 'col-md-4 col-md-offset-4');

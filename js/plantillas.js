@@ -78,6 +78,9 @@ var Plantilla = function() {
 			'Fé': {
 				'Permanente': 0
 			},
+			'Humanidad': {
+				'Permanente': 0
+			},
 			'Fuerza de Voluntad': {
 				'Permanente': 0,
 				'Temporal': 0
