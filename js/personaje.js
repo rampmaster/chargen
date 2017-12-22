@@ -103,6 +103,8 @@ var Personaje = function(obj = null) {
 					campo.setAttribute('class', 'form-control');
 					campo.setAttribute('value', (self.obj[key] != undefined) ? self.obj[key] : '');
 				} else {
+					label.setAttribute('class', 'col-md-12');
+					column.setAttribute('class', 'col-md-12');				
 					var campo = document.createElement('textarea');
 					campo.setAttribute('id', key);
 					campo.setAttribute('class', 'form-control');

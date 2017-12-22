@@ -14,7 +14,6 @@ document.getElementById('descargar').onclick = function() {
 	console.log('Iniciando descarga');
 	download(JSON.stringify(p.obj, null, 4), 'personaje.json', 'text/plain');
 };
-// Cargar
 document.forms['myform'].elements['myfile'].onchange = function(evt) {
   if(!window.FileReader) return; // Browser is not compatible
   var reader = new FileReader();

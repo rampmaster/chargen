@@ -1,0 +1,23 @@
+body {
+	margin: 0;
+	padding: 0 1em;
+}
+ul#menu {
+	padding: 0;
+	margin: 0;
+}
+li {
+	list-style-type: none;
+	display: inline-block;
+}
+li + li {
+	padding-left: 1em;
+	border-left: solid 1px gray;
+	margin-left: 1em;  
+}
+ul#menu li p {
+	margin: 0;
+}
+input[type=file] {
+	width: 200px;
+}
