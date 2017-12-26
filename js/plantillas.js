@@ -97,9 +97,9 @@ var Plantilla = function() {
 		},
 		'Experiencia': 0,
 		'Experiencia Total': 0,
-		/*
 		'Méritos': {},
 		'Defectos':	{},
+		/*
 		'Fecha de Nacimiento': '',
 		'Edad': 0,
 		'Pelo': '',
@@ -109,7 +109,7 @@ var Plantilla = function() {
 		'Peso': 0,
 		'Sexo': 0,
 		'Lugar de Trabajo': '',
-		'Horario de Trabajo': '',
+		'Horario de Trabajo': ''
 		*/
 	};
 };

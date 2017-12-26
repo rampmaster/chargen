@@ -1,6 +1,5 @@
 var chargen = function() {
-	var plantilla = {}
-	var personaje = {}
+	var personaje = new Personaje('mortal')
 	var operaciones = {
 		nuevo: function() {
 			console.log('Nuevo Personaje.')
@@ -22,11 +21,12 @@ var chargen = function() {
 		}
 	}
 	return {
-		plantilla: plantilla,
 		personaje: personaje,
-		render: function() {
+		render: function(target = null) {
 			var menu = new Menu(operaciones)
-			document.body.append(menu)
+			var container = (target != null) ? target : document.body 
+			container.append(menu)
+			this.personaje.render(container)
 		}
 	}
 }()

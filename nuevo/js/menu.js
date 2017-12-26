@@ -31,7 +31,7 @@ var Menu = function(op) {
 			})
 			opt.append(select)
 		} else {
-			var opt = dom.link(i, op[i], '#')
+			var opt = dom.link(capitalizeFirstLetter(i), op[i], '#')
 		}
 		var li = dom.create('li')
 		li.append(opt)
