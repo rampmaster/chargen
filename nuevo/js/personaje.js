@@ -1,4 +1,6 @@
+// Personaje: Objeto principal
 var Personaje = function(tipo) {
+	// Obtener Plantilla
 	var plantilla = new Plantilla(tipo)
 	// Crear nuevo objeto JSON en base a la propiedad 'obj' de la plantilla
 	var obj = JSON.parse(JSON.stringify(plantilla.obj))
@@ -8,9 +10,22 @@ var Personaje = function(tipo) {
 		'render': function(target = null) {
 			var personaje = dom.create('div', 'personaje')
 			personaje.innerHTML += '<br><hr>'
-			personaje.innerHTML += '<h1>' + (this.obj.Nombre ? this.obj.Nombre : 'Personaje')  + '</h1>'
-			personaje.innerHTML += '<h2>' + (this.obj.Jugador ? this.obj.jugador : 'Jugador')  + '</h2>'
-			personaje.innerHTML += '<h2>' + (this.obj.Concepto ? this.obj.Concepto : 'Concepto')  + '</h2>'
+			for(var key in obj) {
+				personaje.innerHTML += '<p>' + key + ' : ' + typeof obj[key] + '</p>'	
+				if(typeof obj[key] === 'object') {
+					if(key === 'Atributos' || key === 'Habilidades') {
+						personaje.innerHTML += '<p>[ ' + key + ' ]</p>'
+					}
+					for(var inner_key in obj[key]) {
+						personaje.innerHTML += '<p style="margin-left: 1em;">' + inner_key + ' : ' + typeof obj[key][inner_key] + '</p>'
+						if(typeof obj[key][inner_key] === 'object') {
+							for(var inner_inner_key in obj[key][inner_key]) {
+								personaje.innerHTML += '<p style="margin-left: 3em;">' + inner_inner_key + ' : ' + typeof obj[key][inner_key][inner_inner_key] + '</p>'
+							}
+						}		
+					}
+				}
+			}
 			var container = (target != null) ? target : document.body 
 			container.append(personaje)
 		}

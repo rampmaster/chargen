@@ -1,3 +1,4 @@
+// CHARGEN: Generador y Administrador de Personajes para Mundo de Tinieblas
 var chargen = function() {
 	var personaje = new Personaje('mortal')
 	var operaciones = {

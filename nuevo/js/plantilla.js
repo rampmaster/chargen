@@ -1,10 +1,13 @@
+// Plantilla: Objeto de referencia
 var Plantilla = function(tipo) {
 	var plantillas = {
 		'mortal': {
+			// Relgas lógicas de Freebies y XP
 			'puntos_iniciales': {
 				'atributos': [6, 4, 3],
 				'habilidades': [11, 7, 4]
 			},
+			// Propiedad que contiene objeto con la hoja de personaje
 			'obj': {
 				'Nombre': '',
 				'Jugador': '',

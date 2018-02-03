@@ -1,6 +1,13 @@
 body {
 	margin: 0;
 	padding: 0 1em;
+	background-color: #123;
+	color: #d01;
+	font-family: monospace;
+	letter-spacing: 1px;
+}
+a {
+	color: white;
 }
 ul#menu {
 	padding: 0;
