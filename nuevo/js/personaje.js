@@ -12,9 +12,9 @@ var Personaje = function(tipo) {
 			personaje.innerHTML += '<br><hr>'
 			for(var key in obj) {
 				if(typeof obj[key] === 'string') {
-					personaje.innerHTML += '<p>' + key + ' <input stype="text"></p>'
+					personaje.innerHTML += '<p>' + key + ' <input type="text"></p>'
 				} else if(typeof obj[key] === 'number') {
-					personaje.innerHTML += '<p>' + key + ' <input stype="number"></p>'
+					personaje.innerHTML += '<p>' + key + ' <input type="number"></p>'
 				} else {
 					personaje.innerHTML += '<p>' + key + ' : ' + typeof obj[key] + '</p>'
 				}
