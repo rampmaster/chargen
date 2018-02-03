@@ -15,45 +15,17 @@ var Personaje = function(tipo) {
 				if(typeof obj[key] === 'object') {
 					// Detectar Componente
 					if(key === 'Atributos' || key === 'Habilidades') {
-						// Componente Rasgo
-						for(var inner_key in obj[key]) {
-							personaje.innerHTML += '<p style="margin-left: 1em;">' + inner_key + ' : ' + typeof obj[key][inner_key] + '</p>'
-							if(typeof obj[key][inner_key] === 'object') {
-								for(var inner_inner_key in obj[key][inner_key]) {
-									personaje.innerHTML += '<p style="margin-left: 3em;">' + inner_inner_key + ' : ' + typeof obj[key][inner_key][inner_inner_key] + '</p>'
-								}
-							}		
-						}
+						// Componente Rasgos
+						var r = new Rasgos(key, obj[key])
+						r.render(personaje)
 					} else if(key === 'Ventajas') {
 						// Componente Ventajas
-						for(var inner_key in obj[key]) {
-							personaje.innerHTML += '<p style="margin-left: 1em;">' + inner_key + ' : ' + typeof obj[key][inner_key] + '</p>'
-							if(typeof obj[key][inner_key] === 'object') {
-								for(var inner_inner_key in obj[key][inner_key]) {
-									personaje.innerHTML += '<p style="margin-left: 3em;">' + inner_inner_key + ' : ' + typeof obj[key][inner_key][inner_inner_key] + '</p>'
-								}
-							}		
-						}
+						var r = new Rasgos(key, obj[key])
+						r.render(personaje)
 					} else if(key === 'Salud') {
 						// Componente Salud
-						for(var inner_key in obj[key]) {
-							personaje.innerHTML += '<p style="margin-left: 1em;">' + inner_key + ' : ' + typeof obj[key][inner_key] + '</p>'
-							if(typeof obj[key][inner_key] === 'object') {
-								for(var inner_inner_key in obj[key][inner_key]) {
-									personaje.innerHTML += '<p style="margin-left: 3em;">' + inner_inner_key + ' : ' + typeof obj[key][inner_key][inner_inner_key] + '</p>'
-								}
-							}		
-						}
-					} else {
-						// Acción por defecto: Componente Indefinido, imprimir objeto
-						for(var inner_key in obj[key]) {
-							personaje.innerHTML += '<p style="margin-left: 1em;">' + inner_key + ' : ' + typeof obj[key][inner_key] + '</p>'
-							if(typeof obj[key][inner_key] === 'object') {
-								for(var inner_inner_key in obj[key][inner_key]) {
-									personaje.innerHTML += '<p style="margin-left: 3em;">' + inner_inner_key + ' : ' + typeof obj[key][inner_key][inner_inner_key] + '</p>'
-								}
-							}		
-						}
+						var r = new Rasgos(key, obj[key])
+						r.render(personaje)
 					}
 				}
 			}
