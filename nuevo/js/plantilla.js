@@ -80,6 +80,9 @@ var Plantilla = function(tipo) {
 						'Influencia': 0,
 						'Recursos': 0
 					},
+					'Otros': {
+						'': 0,
+					},
 					'Virtudes': {
 						'Conciencia': 1,
 						'Autocontrol': 1,

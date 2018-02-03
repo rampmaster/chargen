@@ -11,7 +11,13 @@ var Personaje = function(tipo) {
 			var personaje = dom.create('div', 'personaje')
 			personaje.innerHTML += '<br><hr>'
 			for(var key in obj) {
-				personaje.innerHTML += '<p>' + key + ' : ' + typeof obj[key] + '</p>'	
+				if(typeof obj[key] === 'string') {
+					personaje.innerHTML += '<p>' + key + ' <input stype="text"></p>'
+				} else if(typeof obj[key] === 'number') {
+					personaje.innerHTML += '<p>' + key + ' <input stype="number"></p>'
+				} else {
+					personaje.innerHTML += '<p>' + key + ' : ' + typeof obj[key] + '</p>'
+				}
 				if(typeof obj[key] === 'object') {
 					// Detectar Componente
 					if(key === 'Atributos' || key === 'Habilidades') {
@@ -20,11 +26,11 @@ var Personaje = function(tipo) {
 						r.render(personaje)
 					} else if(key === 'Ventajas') {
 						// Componente Ventajas
-						var r = new Rasgos(key, obj[key])
+						var r = new Ventajas(key, obj[key])
 						r.render(personaje)
 					} else if(key === 'Salud') {
 						// Componente Salud
-						var r = new Rasgos(key, obj[key])
+						var r = new Salud(key, obj[key])
 						r.render(personaje)
 					}
 				}
